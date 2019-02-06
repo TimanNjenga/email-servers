@@ -2,8 +2,8 @@
 // Created by timan on 2018-11-21.
 //
 
-#include "netbuffer.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../server.h"
 #include "session_initiation.h"
 #include <sys/utsname.h>
 

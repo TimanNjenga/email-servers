@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "server.h"
-#include "netbuffer.h"
+#include "../server.h"
+#include "../netbuffer.h"
 #include "message_contents.h"
 
 #define MAX_LINE_LENGTH 1024

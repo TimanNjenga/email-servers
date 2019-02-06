@@ -1,6 +1,6 @@
-#include "netbuffer.h"
-#include "mailuser.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../mailuser.h"
+#include "../server.h"
 #include "transaction_state.h"
 
 #include <stdio.h>

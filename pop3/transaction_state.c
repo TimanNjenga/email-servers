@@ -2,9 +2,9 @@
 // Created by timan on 2018-11-26.
 //
 
-#include "netbuffer.h"
-#include "mailuser.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../mailuser.h"
+#include "../server.h"
 #include "update_state.h"
 
 #include <stdio.h>

@@ -18,8 +18,8 @@ set(CMAKE_C_FLAGS "-g -Wall -std=gnu99")
 # Add a target named `mysmtpd`
 # Followed by a list of source files used to compile the target
 add_executable(mysmtpd
-        client_initiation.c
-        client_initiation.h
+        smtp/client_initiation.c
+        smtp/client_initiation.h
         mailuser.c
         mailuser.h
         mysmtpd.c
@@ -27,26 +27,26 @@ add_executable(mysmtpd
         netbuffer.h
         server.c
         server.h
-        session_initiation.h
-        session_initiation.c
-        mail_transaction.c
-        mail_transaction.h
-        receipt_specification.c
-        receipt_specification.h
-        message_contents.c
-        message_contents.h)
+        smtp/session_initiation.h
+        smtp/session_initiation.c
+        smtp/mail_transaction.c
+        smtp/mail_transaction.h
+        smtp/receipt_specification.c
+        smtp/receipt_specification.h
+        smtp/message_contents.c
+        smtp/message_contents.h)
 
 # Add a target named `mypopd`
 # Followed by a list of source files used to compile the target
 add_executable(mypopd
         mailuser.c
         mailuser.h
-        mypopd.c
+        pop3/mypopd.c
         netbuffer.c
         netbuffer.h
         server.c
         server.h
-        transaction_state.c
-        transaction_state.h
-        update_state.c
-        update_state.h)
+        pop3/transaction_state.c
+        pop3/transaction_state.h
+        pop3/update_state.c
+        pop3/update_state.h)

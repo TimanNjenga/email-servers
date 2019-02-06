@@ -3,9 +3,9 @@
 //
 
 #include "update_state.h"
-#include "netbuffer.h"
-#include "mailuser.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../mailuser.h"
+#include "../server.h"
 
 #include <stdio.h>
 #include <stdlib.h>

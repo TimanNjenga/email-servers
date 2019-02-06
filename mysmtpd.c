@@ -1,11 +1,11 @@
 #include "netbuffer.h"
 #include "mailuser.h"
 #include "server.h"
-#include "client_initiation.h"
-#include "session_initiation.h"
-#include "mail_transaction.h"
-#include "message_contents.h"
-#include "receipt_specification.h"
+#include "smtp/client_initiation.h"
+#include "smtp/session_initiation.h"
+#include "smtp/mail_transaction.h"
+#include "smtp/message_contents.h"
+#include "smtp/receipt_specification.h"
 
 #include <stdio.h>
 #include <stdlib.h>

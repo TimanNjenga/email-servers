@@ -1,9 +1,9 @@
 //
 // Created by timan on 2018-11-21.
 //
-#include "netbuffer.h"
-#include "mailuser.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../mailuser.h"
+#include "../server.h"
 #include "client_initiation.h"
 #include "session_initiation.h"
 #include "mail_transaction.h"

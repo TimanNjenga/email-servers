@@ -3,8 +3,8 @@
 //
 
 #include <stdlib.h>
-#include "netbuffer.h"
-#include "server.h"
+#include "../netbuffer.h"
+#include "../server.h"
 #include "client_initiation.h"
 
 
