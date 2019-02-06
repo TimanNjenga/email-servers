@@ -1,0 +1,171 @@
+Total before late penalty: [98/100]
+
+NOTE: in the marking report something left blank (e.g.  [ /6]) typically means
+that you got full marks for that item. 
+
+--------------------------------
+BASIC COMMON FUNCTIONALITY: [6/6]
+
+[/2] Regular use of git to push changes to stash
+[/2] Working makefile produces both mysmtpd and mypopd
+[/2] Code compiles without warnings
+
+----------------------------------
+SMTP SERVER - FUNCTIONALITY: [39/40]
+
+[/2] Initial welcome message sent successfully
+     [x] *- Correct format and code
+     [x] *- Includes node name
+
+[/3] QUIT command functionality
+     [x] *- Accepted at any stage (except within DATA)
+     [x] *- Proper reply code
+     [x] *- Closes connection and finishes program
+
+[/2] NOOP command functionality
+     [x] *- Accepted at any stage (except within DATA)
+     [x] *- Proper reply code
+
+[/5] HELO command functionality
+     [x] *- Accepted when connection starts
+     [x] *- Proper reply, includes received parameter
+     [x]  - If received elsewhere, one of:
+           * Option 1: accepted, resets recipients and state
+           * Option 2: rejected, proper error code
+
+[/5] MAIL command functionality
+     [x] *- Accepted after HELO or DATA, rejected elsewhere
+     [x] *- Rejected if parameter is not FROM:<...>\r\n
+     [x] *- Accepts any source without checking it
+     [x] *- Proper reply
+
+[/7] RCPT command functionality
+     [x] *- Accepted after MAIL or another RCPT, rejected elsewhere
+     [x] *- Rejected if parameter is not TO:<...>\r\n
+     [x] *- Rejected if recipient is not in users.txt
+     [x] *- If accepted adds recipient to list of recipients
+     [x] *- Proper reply
+
+[/10] DATA command functionality
+     [x] *- Accepted after RCPT, rejected elsewhere
+     [x] *- Rejected if some parameter received
+     [x] *- Rejected if no valid recipient in list
+     [x] *- Proper initial reply (354)
+     [x] *- Properly reads data until .\r\n is found in start of line
+     [x]  - Saves read data to temporary file                    
+     [x]  - Copies temporary file to each recipient              
+     [x]  - Deletes temporary file                               
+     [x] *- Proper final reply in case of success        
+     [x]  - Proper final reply in case of error handling data    
+
+[5/6] Invalid commands and error handling
+     [ ] *- Properly replies with 500 error if line is too long
+     [x] *- Properly replies with 502 error if command is not implemented
+     [x] *- Properly replies with 500 if command is unrecognized
+     [x] *- Properly replies with 500 if command is valid but is not followed by space
+       or CRLF (e.g., HELOABC)
+     [x]  - Properly closes connection if read (or nb_read_line) returns <= 0
+     [x]  - Properly closes connection if send (or send_string/send_all) returns < 0
+
+     Your server didn't handle the cached chars in the netbuffer.
+     A valid command line following a too long line should be accepted.
+
+---------------------------------
+POP3 SERVER - FUNCTIONALITY [39/40]
+
+[/1] Initial welcome message sent successfully
+     [x] *- Correct format and code
+
+[/3] QUIT command functionality
+     [x] *- Accepted at any stage
+     [x] *- Proper reply
+     [x] *- Closes connection and finishes program
+     [x] *- Commits changes to mail data (deleted messages)
+
+[/2] NOOP command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere 
+     [x] *- Proper reply
+
+[/3] USER command functionality
+     [x] *- Accepted when connection starts or after failed PASS, rejected elsewhere
+     [x] *- Rejected if no parameter
+     [x] *- Rejected if user is not in users.txt
+     [x] *- Accepts valid login after previous login attempt failed
+     [x] *- Proper reply
+
+[/4] PASS command functionality
+     [x] *- Accepted after USER, rejected elsewhere
+     [x] *- Rejected if no parameter
+     [x] *- Rejected if user/password not in users.txt
+     [x] *- Accepts valid login after previous login attempt failed
+     [x] *- Proper reply
+     [x] *- Properly loads user mail and switches to transaction stage
+
+[/3] STAT command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere
+     [x] *- Rejected if parameter specified
+     [x] *- Properly ignores deleted messages
+     [x] *- Proper reply in valid format
+
+[/5] LIST command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere
+     [x] *- If parameter specified:
+           * rejected if invalid parameter specified: not a number, non-existent, deleted
+           * properly replies with single line reply containing number and size
+     [x] *- If no parameter
+           * properly replies with initial line containing count and size of messages
+           * following lines include message number and size, ending in period
+           * deleted messages not listed, all other messages listed
+
+[/6] RETR command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere
+     [x] *- Rejected if no parameter
+     [x] *- Rejected if invalid parameter specified: not a number, non-existent, deleted
+     [x]  - Proper error if unable to read message file
+     [x] *- Proper successful initial reply followed by entire message
+     [x] *- Properly terminates message with line containing only period
+
+[/4] DELE command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere
+     [x] *- Rejected if no parameter
+     [x] *- Rejected if invalid parameter specified: not a number, non-existent, deleted
+     [x] *- Properly marks message as deleted
+     [x] *- Proper successful reply
+
+[/3] RSET command functionality
+     [x] *- Accepted in transaction stage, rejected elsewhere
+     [x] *- Rejected if some parameter
+     [x] *- Properly unmarks messages as deleted
+     [x] *- Proper successful reply
+
+[/6] Invalid commands and error handling
+     [ ] *- Properly replies with error if line is too long
+     [x] *- Properly replies with error if command is not implemented or unrecognized
+     [x] *- Properly replies with 500 if command is valid but is not followed by space or CRLF (e.g., USERABC)
+     [x]  - Properly closes connection if read (or nb_read_line) returns <= 0
+     [x]  - Properly closes connection if send (or send_string/send_all) returns < 0
+     [x]  - Deleted messages not actually deleted if no QUIT issued
+
+
+----------------------------------
+PROGRAM STRUCTURE AND STYLE: [/14]
+
+   * Easy to read, appropriate layout, lines aren't too long, blank
+     lines delineating blocks of code functionality. (Basically 
+     does it look good and is easy to read.)  [/3]
+
+   * Blocks of code commented. Is it clear what functionality each
+     block of code is responsible for? Is it clear what variables are
+     being used for?   [/3]
+
+   * Code is decomposed into methods. There shouldn't be long 
+     blocks of code or repeated code. [/3]
+
+   * Reasonable choice of algorithms and problem solving approach 
+     (for example doesn't read entire message from the client
+      before saving it.)              [/3]
+
+   * Marker's discretion   [/2]
+
+
+MARKER'S ADDITIONAL COMMENTS:
